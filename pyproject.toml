@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.46.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clinicflow"
+version = "0.1.0"
+description = "Non-clinical clinic room, staff, inventory, and appointment operations"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "MohamedRef", email = "hamorefaat85@gmail.com" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "mypy==1.19.1",
+  "pytest==9.0.2",
+  "pytest-cov==7.0.0",
+  "ruff==0.15.5",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+
+[tool.coverage.run]
+source = ["clinicflow"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true

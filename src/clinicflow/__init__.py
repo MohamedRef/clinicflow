@@ -11,6 +11,7 @@ from .models import (
 )
 from .repository import ClinicFlowRepository, PersistenceError
 from .service import ClinicFlow
+from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
 
 __all__ = [
@@ -23,9 +24,12 @@ __all__ = [
     "MaintenanceBlock",
     "PersistenceError",
     "Room",
+    "RoomUse",
     "ReleasedSlot",
     "StaffMember",
+    "TurnoverTask",
     "WaitlistMatch",
     "WaitlistRequest",
     "match_waitlist",
+    "plan_room_turnover",
 ]

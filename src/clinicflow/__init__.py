@@ -11,6 +11,7 @@ from .models import (
 )
 from .repository import ClinicFlowRepository, PersistenceError
 from .service import ClinicFlow
+from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
 
 __all__ = [
     "Appointment",
@@ -22,5 +23,9 @@ __all__ = [
     "MaintenanceBlock",
     "PersistenceError",
     "Room",
+    "ReleasedSlot",
     "StaffMember",
+    "WaitlistMatch",
+    "WaitlistRequest",
+    "match_waitlist",
 ]

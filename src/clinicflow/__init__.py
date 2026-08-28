@@ -41,6 +41,7 @@ from .reorder_planning import (
     plan_inventory_reorders,
 )
 from .repository import ClinicFlowRepository, PersistenceError
+from .room_downtime import DowntimeRepairPlan, RepairCrew, RoomDowntime, plan_room_downtime_repairs
 from .room_preparation import PreparationAssessment, PreparationRequest, RoomReadiness, assess_room_preparation
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
 from .service import ClinicFlow
@@ -82,6 +83,9 @@ __all__ = [
     "RoomBooking",
     "RoomRelocation",
     "RoomReadiness",
+    "RoomDowntime",
+    "RepairCrew",
+    "DowntimeRepairPlan",
     "RoomUse",
     "RelocationRoom",
     "ReleasedSlot",
@@ -113,4 +117,5 @@ __all__ = [
     "relocate_room_outages",
     "assess_room_preparation",
     "plan_appointment_overbooking",
+    "plan_room_downtime_repairs",
 ]

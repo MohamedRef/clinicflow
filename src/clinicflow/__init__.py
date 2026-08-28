@@ -1,5 +1,11 @@
 """ClinicFlow public API."""
 
+from .appointment_overbooking import (
+    OverbookingDecision,
+    OverbookingRequest,
+    OverbookingSlot,
+    plan_appointment_overbooking,
+)
 from .cleaning_capacity import CleaningAssignment, CleaningTeam, RoomCleaningDemand, allocate_cleaning_capacity
 from .confirmations import ConfirmationCase, ConfirmationState, ConfirmationStatus, review_confirmations
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
@@ -47,6 +53,9 @@ __all__ = [
     "AppointmentDelayForecast",
     "AppointmentDelayInput",
     "AppointmentStatus",
+    "OverbookingDecision",
+    "OverbookingRequest",
+    "OverbookingSlot",
     "BatchAllocation",
     "ClinicFlow",
     "CleaningAssignment",
@@ -103,4 +112,5 @@ __all__ = [
     "replace_recalled_allocations",
     "relocate_room_outages",
     "assess_room_preparation",
+    "plan_appointment_overbooking",
 ]

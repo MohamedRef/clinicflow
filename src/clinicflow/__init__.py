@@ -10,6 +10,13 @@ from .inventory_allocation import (
     SupplyShortage,
     allocate_inventory,
 )
+from .inventory_transfers import (
+    RoomStock,
+    StockTransfer,
+    TransferRequest,
+    TransferShortage,
+    plan_inventory_transfers,
+)
 from .models import (
     Appointment,
     AppointmentStatus,
@@ -61,6 +68,7 @@ __all__ = [
     "RecallShortage",
     "ReorderRecommendation",
     "Room",
+    "RoomStock",
     "RoomCleaningDemand",
     "RoomBooking",
     "RoomRelocation",
@@ -74,10 +82,13 @@ __all__ = [
     "SubstituteStaff",
     "SupplyDemand",
     "SupplyShortage",
+    "StockTransfer",
     "SupplierOffer",
     "ScheduledBatchAllocation",
     "ScheduledConsumption",
     "TurnoverTask",
+    "TransferRequest",
+    "TransferShortage",
     "WaitlistMatch",
     "WaitlistRequest",
     "match_waitlist",
@@ -86,6 +97,7 @@ __all__ = [
     "review_confirmations",
     "plan_room_turnover",
     "plan_inventory_reorders",
+    "plan_inventory_transfers",
     "assign_staff_coverage",
     "forecast_appointment_delays",
     "replace_recalled_allocations",

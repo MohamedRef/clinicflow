@@ -18,6 +18,7 @@ from .models import (
 )
 from .repository import ClinicFlowRepository, PersistenceError
 from .service import ClinicFlow
+from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
 
@@ -27,6 +28,8 @@ __all__ = [
     "BatchAllocation",
     "ClinicFlow",
     "ClinicFlowRepository",
+    "CoverageAssignment",
+    "CoverageDemand",
     "DomainError",
     "InventoryItem",
     "InventoryBatch",
@@ -36,6 +39,7 @@ __all__ = [
     "RoomUse",
     "ReleasedSlot",
     "StaffMember",
+    "SubstituteStaff",
     "SupplyDemand",
     "SupplyShortage",
     "TurnoverTask",
@@ -44,4 +48,5 @@ __all__ = [
     "match_waitlist",
     "allocate_inventory",
     "plan_room_turnover",
+    "assign_staff_coverage",
 ]

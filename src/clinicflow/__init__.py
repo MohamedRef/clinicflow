@@ -46,6 +46,7 @@ from .room_preparation import PreparationAssessment, PreparationRequest, RoomRea
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
 from .service import ClinicFlow
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
+from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
 
@@ -95,6 +96,9 @@ __all__ = [
     "SubstituteStaff",
     "SupplyDemand",
     "SupplyShortage",
+    "ExpiringSupplyBatch",
+    "ExpiryAllocation",
+    "ScheduledSupplyDemand",
     "StockTransfer",
     "SupplierOffer",
     "ScheduledBatchAllocation",
@@ -118,4 +122,5 @@ __all__ = [
     "assess_room_preparation",
     "plan_appointment_overbooking",
     "plan_room_downtime_repairs",
+    "allocate_expiring_supplies",
 ]

@@ -16,6 +16,7 @@ from .models import (
     Room,
     StaffMember,
 )
+from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
 from .repository import ClinicFlowRepository, PersistenceError
 from .service import ClinicFlow
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
@@ -35,6 +36,8 @@ __all__ = [
     "InventoryBatch",
     "MaintenanceBlock",
     "PersistenceError",
+    "RecallReplacement",
+    "RecallShortage",
     "Room",
     "RoomUse",
     "ReleasedSlot",
@@ -42,6 +45,7 @@ __all__ = [
     "SubstituteStaff",
     "SupplyDemand",
     "SupplyShortage",
+    "ScheduledBatchAllocation",
     "TurnoverTask",
     "WaitlistMatch",
     "WaitlistRequest",
@@ -49,4 +53,5 @@ __all__ = [
     "allocate_inventory",
     "plan_room_turnover",
     "assign_staff_coverage",
+    "replace_recalled_allocations",
 ]

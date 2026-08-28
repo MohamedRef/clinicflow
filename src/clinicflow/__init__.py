@@ -19,6 +19,13 @@ from .models import (
     StaffMember,
 )
 from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
+from .reorder_planning import (
+    InventoryPosition,
+    ReorderRecommendation,
+    ScheduledConsumption,
+    SupplierOffer,
+    plan_inventory_reorders,
+)
 from .repository import ClinicFlowRepository, PersistenceError
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
 from .service import ClinicFlow
@@ -40,12 +47,14 @@ __all__ = [
     "CoverageDemand",
     "DomainError",
     "InventoryItem",
+    "InventoryPosition",
     "InventoryBatch",
     "MaintenanceBlock",
     "OutageAppointment",
     "PersistenceError",
     "RecallReplacement",
     "RecallShortage",
+    "ReorderRecommendation",
     "Room",
     "RoomCleaningDemand",
     "RoomBooking",
@@ -57,7 +66,9 @@ __all__ = [
     "SubstituteStaff",
     "SupplyDemand",
     "SupplyShortage",
+    "SupplierOffer",
     "ScheduledBatchAllocation",
+    "ScheduledConsumption",
     "TurnoverTask",
     "WaitlistMatch",
     "WaitlistRequest",
@@ -65,6 +76,7 @@ __all__ = [
     "allocate_inventory",
     "allocate_cleaning_capacity",
     "plan_room_turnover",
+    "plan_inventory_reorders",
     "assign_staff_coverage",
     "forecast_appointment_delays",
     "replace_recalled_allocations",

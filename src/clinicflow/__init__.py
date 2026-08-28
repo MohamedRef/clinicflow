@@ -1,6 +1,7 @@
 """ClinicFlow public API."""
 
 from .cleaning_capacity import CleaningAssignment, CleaningTeam, RoomCleaningDemand, allocate_cleaning_capacity
+from .confirmations import ConfirmationCase, ConfirmationState, ConfirmationStatus, review_confirmations
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
 from .inventory_allocation import (
     BatchAllocation,
@@ -42,6 +43,9 @@ __all__ = [
     "ClinicFlow",
     "CleaningAssignment",
     "CleaningTeam",
+    "ConfirmationCase",
+    "ConfirmationState",
+    "ConfirmationStatus",
     "ClinicFlowRepository",
     "CoverageAssignment",
     "CoverageDemand",
@@ -75,6 +79,7 @@ __all__ = [
     "match_waitlist",
     "allocate_inventory",
     "allocate_cleaning_capacity",
+    "review_confirmations",
     "plan_room_turnover",
     "plan_inventory_reorders",
     "assign_staff_coverage",

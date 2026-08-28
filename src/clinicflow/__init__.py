@@ -1,5 +1,6 @@
 """ClinicFlow public API."""
 
+from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
 from .inventory_allocation import (
     BatchAllocation,
     InventoryBatch,
@@ -26,6 +27,8 @@ from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitli
 
 __all__ = [
     "Appointment",
+    "AppointmentDelayForecast",
+    "AppointmentDelayInput",
     "AppointmentStatus",
     "BatchAllocation",
     "ClinicFlow",
@@ -58,6 +61,7 @@ __all__ = [
     "allocate_inventory",
     "plan_room_turnover",
     "assign_staff_coverage",
+    "forecast_appointment_delays",
     "replace_recalled_allocations",
     "relocate_room_outages",
 ]

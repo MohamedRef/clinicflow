@@ -7,6 +7,13 @@ from .appointment_overbooking import (
     plan_appointment_overbooking,
 )
 from .cleaning_capacity import CleaningAssignment, CleaningTeam, RoomCleaningDemand, allocate_cleaning_capacity
+from .cold_storage import (
+    ColdStorageAssessment,
+    ColdStorageDisposition,
+    StorageTemperatureReading,
+    TemperatureControlledBatch,
+    assess_cold_storage,
+)
 from .confirmations import ConfirmationCase, ConfirmationState, ConfirmationStatus, review_confirmations
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
 from .inventory_allocation import (
@@ -62,6 +69,8 @@ __all__ = [
     "ClinicFlow",
     "CleaningAssignment",
     "CleaningTeam",
+    "ColdStorageAssessment",
+    "ColdStorageDisposition",
     "ConfirmationCase",
     "ConfirmationState",
     "ConfirmationStatus",
@@ -91,6 +100,7 @@ __all__ = [
     "RelocationRoom",
     "ReleasedSlot",
     "StaffMember",
+    "StorageTemperatureReading",
     "PreparationAssessment",
     "PreparationRequest",
     "SubstituteStaff",
@@ -104,6 +114,7 @@ __all__ = [
     "ScheduledBatchAllocation",
     "ScheduledConsumption",
     "TurnoverTask",
+    "TemperatureControlledBatch",
     "TransferRequest",
     "TransferShortage",
     "WaitlistMatch",
@@ -123,4 +134,5 @@ __all__ = [
     "plan_appointment_overbooking",
     "plan_room_downtime_repairs",
     "allocate_expiring_supplies",
+    "assess_cold_storage",
 ]

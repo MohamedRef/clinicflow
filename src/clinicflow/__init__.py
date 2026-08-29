@@ -6,6 +6,7 @@ from .appointment_overbooking import (
     OverbookingSlot,
     plan_appointment_overbooking,
 )
+from .break_coverage import BreakAssignment, BreakRequest, ReliefStaff, schedule_break_coverage
 from .cleaning_capacity import CleaningAssignment, CleaningTeam, RoomCleaningDemand, allocate_cleaning_capacity
 from .cold_storage import (
     ColdStorageAssessment,
@@ -66,6 +67,8 @@ __all__ = [
     "OverbookingRequest",
     "OverbookingSlot",
     "BatchAllocation",
+    "BreakAssignment",
+    "BreakRequest",
     "ClinicFlow",
     "CleaningAssignment",
     "CleaningTeam",
@@ -99,6 +102,7 @@ __all__ = [
     "RoomUse",
     "RelocationRoom",
     "ReleasedSlot",
+    "ReliefStaff",
     "StaffMember",
     "StorageTemperatureReading",
     "PreparationAssessment",
@@ -123,6 +127,7 @@ __all__ = [
     "allocate_inventory",
     "allocate_cleaning_capacity",
     "review_confirmations",
+    "schedule_break_coverage",
     "plan_room_turnover",
     "plan_inventory_reorders",
     "plan_inventory_transfers",

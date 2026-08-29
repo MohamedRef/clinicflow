@@ -1,5 +1,12 @@
 """ClinicFlow public API."""
 
+from .accessibility_readiness import (
+    AccessibilityAssessment,
+    AccessibilityDisposition,
+    AppointmentAccessibilityNeed,
+    RoomAccessibilityCheck,
+    assess_accessibility_readiness,
+)
 from .appointment_overbooking import (
     OverbookingDecision,
     OverbookingRequest,
@@ -60,9 +67,12 @@ from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitli
 
 __all__ = [
     "Appointment",
+    "AccessibilityAssessment",
+    "AccessibilityDisposition",
     "AppointmentDelayForecast",
     "AppointmentDelayInput",
     "AppointmentStatus",
+    "AppointmentAccessibilityNeed",
     "OverbookingDecision",
     "OverbookingRequest",
     "OverbookingSlot",
@@ -91,6 +101,7 @@ __all__ = [
     "RecallShortage",
     "ReorderRecommendation",
     "Room",
+    "RoomAccessibilityCheck",
     "RoomStock",
     "RoomCleaningDemand",
     "RoomBooking",
@@ -125,6 +136,7 @@ __all__ = [
     "WaitlistRequest",
     "match_waitlist",
     "allocate_inventory",
+    "assess_accessibility_readiness",
     "allocate_cleaning_capacity",
     "review_confirmations",
     "schedule_break_coverage",

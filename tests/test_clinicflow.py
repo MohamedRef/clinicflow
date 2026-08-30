@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 from clinicflow import (
+    Appointment,
     AppointmentStatus,
     ClinicFlow,
     ClinicFlowRepository,
@@ -25,7 +26,7 @@ def prepared() -> ClinicFlow:
     return clinic
 
 
-def schedule(clinic: ClinicFlow, appointment_id: str = "visit-1"):
+def schedule(clinic: ClinicFlow, appointment_id: str = "visit-1") -> Appointment:
     return clinic.schedule(
         appointment_id,
         "patient-804",

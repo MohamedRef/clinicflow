@@ -31,6 +31,13 @@ from .courier_collections import (
 )
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
 from .equipment_loans import EquipmentLoanAssignment, EquipmentLoanRequest, LoanEquipment, allocate_equipment_loans
+from .facility_interruptions import (
+    FacilityImpactDecision,
+    FacilityInterruption,
+    FacilityRoomUse,
+    FacilityService,
+    assess_facility_interruptions,
+)
 from .inventory_allocation import (
     BatchAllocation,
     InventoryBatch,
@@ -85,6 +92,10 @@ __all__ = [
     "AppointmentStatus",
     "EquipmentLoanAssignment",
     "EquipmentLoanRequest",
+    "FacilityImpactDecision",
+    "FacilityInterruption",
+    "FacilityRoomUse",
+    "FacilityService",
     "LoanEquipment",
     "AppointmentAccessibilityNeed",
     "OverbookingDecision",
@@ -163,6 +174,7 @@ __all__ = [
     "allocate_inventory",
     "allocate_equipment_loans",
     "assess_clinic_opening",
+    "assess_facility_interruptions",
     "assess_accessibility_readiness",
     "allocate_cleaning_capacity",
     "review_confirmations",

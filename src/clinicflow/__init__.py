@@ -48,6 +48,7 @@ from .models import (
     Room,
     StaffMember,
 )
+from .opening_readiness import ClinicOpeningAssessment, OpeningCheck, OpeningCheckStatus, assess_clinic_opening
 from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
 from .reorder_planning import (
     InventoryPosition,
@@ -94,6 +95,7 @@ __all__ = [
     "ConfirmationState",
     "ConfirmationStatus",
     "ClinicFlowRepository",
+    "ClinicOpeningAssessment",
     "CoverageAssignment",
     "CoverageDemand",
     "DomainError",
@@ -101,6 +103,8 @@ __all__ = [
     "InventoryPosition",
     "InventoryBatch",
     "MaintenanceBlock",
+    "OpeningCheck",
+    "OpeningCheckStatus",
     "OutageAppointment",
     "PersistenceError",
     "RecallReplacement",
@@ -145,6 +149,7 @@ __all__ = [
     "match_waitlist",
     "allocate_inventory",
     "allocate_equipment_loans",
+    "assess_clinic_opening",
     "assess_accessibility_readiness",
     "allocate_cleaning_capacity",
     "review_confirmations",

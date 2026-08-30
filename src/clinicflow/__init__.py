@@ -45,6 +45,7 @@ from .inventory_transfers import (
     TransferShortage,
     plan_inventory_transfers,
 )
+from .key_custody import KeyCustodyEvent, KeyCustodyEventType, KeyCustodyPosition, reconcile_key_custody
 from .models import (
     Appointment,
     AppointmentStatus,
@@ -110,6 +111,9 @@ __all__ = [
     "DomainError",
     "InventoryItem",
     "InventoryPosition",
+    "KeyCustodyEvent",
+    "KeyCustodyEventType",
+    "KeyCustodyPosition",
     "InventoryBatch",
     "MaintenanceBlock",
     "OpeningCheck",
@@ -162,6 +166,7 @@ __all__ = [
     "assess_accessibility_readiness",
     "allocate_cleaning_capacity",
     "review_confirmations",
+    "reconcile_key_custody",
     "schedule_break_coverage",
     "schedule_courier_collections",
     "plan_room_turnover",

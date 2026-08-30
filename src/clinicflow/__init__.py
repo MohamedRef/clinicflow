@@ -23,6 +23,12 @@ from .cold_storage import (
     assess_cold_storage,
 )
 from .confirmations import ConfirmationCase, ConfirmationState, ConfirmationStatus, review_confirmations
+from .courier_collections import (
+    CourierCollectionAssignment,
+    CourierCollectionRequest,
+    CourierWindow,
+    schedule_courier_collections,
+)
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
 from .equipment_loans import EquipmentLoanAssignment, EquipmentLoanRequest, LoanEquipment, allocate_equipment_loans
 from .inventory_allocation import (
@@ -98,6 +104,9 @@ __all__ = [
     "ClinicOpeningAssessment",
     "CoverageAssignment",
     "CoverageDemand",
+    "CourierCollectionAssignment",
+    "CourierCollectionRequest",
+    "CourierWindow",
     "DomainError",
     "InventoryItem",
     "InventoryPosition",
@@ -154,6 +163,7 @@ __all__ = [
     "allocate_cleaning_capacity",
     "review_confirmations",
     "schedule_break_coverage",
+    "schedule_courier_collections",
     "plan_room_turnover",
     "plan_inventory_reorders",
     "plan_inventory_transfers",

@@ -24,6 +24,7 @@ from .cold_storage import (
 )
 from .confirmations import ConfirmationCase, ConfirmationState, ConfirmationStatus, review_confirmations
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
+from .equipment_loans import EquipmentLoanAssignment, EquipmentLoanRequest, LoanEquipment, allocate_equipment_loans
 from .inventory_allocation import (
     BatchAllocation,
     InventoryBatch,
@@ -72,6 +73,9 @@ __all__ = [
     "AppointmentDelayForecast",
     "AppointmentDelayInput",
     "AppointmentStatus",
+    "EquipmentLoanAssignment",
+    "EquipmentLoanRequest",
+    "LoanEquipment",
     "AppointmentAccessibilityNeed",
     "OverbookingDecision",
     "OverbookingRequest",
@@ -136,6 +140,7 @@ __all__ = [
     "WaitlistRequest",
     "match_waitlist",
     "allocate_inventory",
+    "allocate_equipment_loans",
     "assess_accessibility_readiness",
     "allocate_cleaning_capacity",
     "review_confirmations",

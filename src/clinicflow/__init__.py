@@ -64,10 +64,12 @@ from .service import ClinicFlow
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
 from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
+from .visitor_access import AccessDeskWindow, VisitorAccessAssignment, VisitorAccessRequest, schedule_visitor_access
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
 
 __all__ = [
     "Appointment",
+    "AccessDeskWindow",
     "AccessibilityAssessment",
     "AccessibilityDisposition",
     "AppointmentDelayForecast",
@@ -136,6 +138,8 @@ __all__ = [
     "TemperatureControlledBatch",
     "TransferRequest",
     "TransferShortage",
+    "VisitorAccessAssignment",
+    "VisitorAccessRequest",
     "WaitlistMatch",
     "WaitlistRequest",
     "match_waitlist",
@@ -157,4 +161,5 @@ __all__ = [
     "plan_room_downtime_repairs",
     "allocate_expiring_supplies",
     "assess_cold_storage",
+    "schedule_visitor_access",
 ]

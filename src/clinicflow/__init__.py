@@ -30,6 +30,12 @@ from .courier_collections import (
     schedule_courier_collections,
 )
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
+from .document_readiness import (
+    AppointmentDocument,
+    AppointmentDocumentRequirement,
+    DocumentReadinessFinding,
+    assess_document_readiness,
+)
 from .equipment_loans import EquipmentLoanAssignment, EquipmentLoanRequest, LoanEquipment, allocate_equipment_loans
 from .facility_interruptions import (
     FacilityImpactDecision,
@@ -244,4 +250,8 @@ __all__ = [
     "SupplyDeliveryReceipt",
     "SupplyReceivingFinding",
     "reconcile_supply_receiving",
+    "AppointmentDocument",
+    "AppointmentDocumentRequirement",
+    "DocumentReadinessFinding",
+    "assess_document_readiness",
 ]

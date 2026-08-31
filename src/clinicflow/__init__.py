@@ -15,6 +15,13 @@ from .appointment_overbooking import (
 )
 from .break_coverage import BreakAssignment, BreakRequest, ReliefStaff, schedule_break_coverage
 from .cleaning_capacity import CleaningAssignment, CleaningTeam, RoomCleaningDemand, allocate_cleaning_capacity
+from .cleaning_supply_readiness import (
+    CleaningSupplyAllocation,
+    CleaningSupplyBatch,
+    CleaningSupplyDemand,
+    CleaningSupplyShortage,
+    allocate_cleaning_supplies,
+)
 from .cold_storage import (
     ColdStorageAssessment,
     ColdStorageDisposition,
@@ -264,4 +271,9 @@ __all__ = [
     "ReceptionFairnessPolicy",
     "ReceptionQueueVisit",
     "assess_reception_fairness",
+    "CleaningSupplyAllocation",
+    "CleaningSupplyBatch",
+    "CleaningSupplyDemand",
+    "CleaningSupplyShortage",
+    "allocate_cleaning_supplies",
 ]

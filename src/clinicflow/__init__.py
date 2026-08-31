@@ -53,6 +53,7 @@ from .inventory_transfers import (
     plan_inventory_transfers,
 )
 from .key_custody import KeyCustodyEvent, KeyCustodyEventType, KeyCustodyPosition, reconcile_key_custody
+from .linen_levels import LinenReplenishment, RoomLinenPosition, plan_linen_replenishment
 from .models import (
     Appointment,
     AppointmentStatus,
@@ -97,6 +98,7 @@ __all__ = [
     "FacilityRoomUse",
     "FacilityService",
     "LoanEquipment",
+    "LinenReplenishment",
     "AppointmentAccessibilityNeed",
     "OverbookingDecision",
     "OverbookingRequest",
@@ -135,6 +137,7 @@ __all__ = [
     "RecallShortage",
     "ReorderRecommendation",
     "Room",
+    "RoomLinenPosition",
     "RoomAccessibilityCheck",
     "RoomStock",
     "RoomCleaningDemand",
@@ -183,6 +186,7 @@ __all__ = [
     "schedule_courier_collections",
     "plan_room_turnover",
     "plan_inventory_reorders",
+    "plan_linen_replenishment",
     "plan_inventory_transfers",
     "assign_staff_coverage",
     "forecast_appointment_delays",

@@ -92,6 +92,12 @@ from .room_utilities import RoomUtilityCheck, RoomUtilityFinding, assess_room_ut
 from .service import ClinicFlow
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
 from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
+from .supply_receiving import (
+    ScheduledSupplyDelivery,
+    SupplyDeliveryReceipt,
+    SupplyReceivingFinding,
+    reconcile_supply_receiving,
+)
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .visitor_access import AccessDeskWindow, VisitorAccessAssignment, VisitorAccessRequest, schedule_visitor_access
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
@@ -234,4 +240,8 @@ __all__ = [
     "LanguageSupportDemand",
     "LanguageSupportShift",
     "allocate_language_support",
+    "ScheduledSupplyDelivery",
+    "SupplyDeliveryReceipt",
+    "SupplyReceivingFinding",
+    "reconcile_supply_receiving",
 ]

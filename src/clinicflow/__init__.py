@@ -65,6 +65,12 @@ from .models import (
 )
 from .opening_readiness import ClinicOpeningAssessment, OpeningCheck, OpeningCheckStatus, assess_clinic_opening
 from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
+from .reception_capacity import (
+    ReceptionArrival,
+    ReceptionCapacityFinding,
+    ReceptionDeskCapacity,
+    assess_reception_capacity,
+)
 from .reorder_planning import (
     InventoryPosition,
     ReorderRecommendation,
@@ -135,6 +141,9 @@ __all__ = [
     "PersistenceError",
     "RecallReplacement",
     "RecallShortage",
+    "ReceptionArrival",
+    "ReceptionCapacityFinding",
+    "ReceptionDeskCapacity",
     "ReorderRecommendation",
     "Room",
     "RoomLinenPosition",
@@ -191,6 +200,7 @@ __all__ = [
     "assign_staff_coverage",
     "forecast_appointment_delays",
     "replace_recalled_allocations",
+    "assess_reception_capacity",
     "relocate_room_outages",
     "assess_room_preparation",
     "plan_appointment_overbooking",

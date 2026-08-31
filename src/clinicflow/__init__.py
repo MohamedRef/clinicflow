@@ -53,6 +53,12 @@ from .inventory_transfers import (
     plan_inventory_transfers,
 )
 from .key_custody import KeyCustodyEvent, KeyCustodyEventType, KeyCustodyPosition, reconcile_key_custody
+from .language_support import (
+    LanguageSupportAssignment,
+    LanguageSupportDemand,
+    LanguageSupportShift,
+    allocate_language_support,
+)
 from .linen_levels import LinenReplenishment, RoomLinenPosition, plan_linen_replenishment
 from .models import (
     Appointment,
@@ -224,4 +230,8 @@ __all__ = [
     "RoomUtilityCheck",
     "RoomUtilityFinding",
     "assess_room_utilities",
+    "LanguageSupportAssignment",
+    "LanguageSupportDemand",
+    "LanguageSupportShift",
+    "allocate_language_support",
 ]

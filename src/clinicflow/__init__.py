@@ -82,6 +82,7 @@ from .repository import ClinicFlowRepository, PersistenceError
 from .room_downtime import DowntimeRepairPlan, RepairCrew, RoomDowntime, plan_room_downtime_repairs
 from .room_preparation import PreparationAssessment, PreparationRequest, RoomReadiness, assess_room_preparation
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
+from .room_utilities import RoomUtilityCheck, RoomUtilityFinding, assess_room_utilities
 from .service import ClinicFlow
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
 from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
@@ -220,4 +221,7 @@ __all__ = [
     "assess_cold_storage",
     "schedule_visitor_access",
     "reconcile_waste_handoffs",
+    "RoomUtilityCheck",
+    "RoomUtilityFinding",
+    "assess_room_utilities",
 ]

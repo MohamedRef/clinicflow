@@ -83,6 +83,12 @@ from .reception_capacity import (
     ReceptionDeskCapacity,
     assess_reception_capacity,
 )
+from .reception_fairness import (
+    ReceptionFairnessFinding,
+    ReceptionFairnessPolicy,
+    ReceptionQueueVisit,
+    assess_reception_fairness,
+)
 from .reorder_planning import (
     InventoryPosition,
     ReorderRecommendation,
@@ -254,4 +260,8 @@ __all__ = [
     "AppointmentDocumentRequirement",
     "DocumentReadinessFinding",
     "assess_document_readiness",
+    "ReceptionFairnessFinding",
+    "ReceptionFairnessPolicy",
+    "ReceptionQueueVisit",
+    "assess_reception_fairness",
 ]

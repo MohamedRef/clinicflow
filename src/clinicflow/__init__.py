@@ -88,6 +88,13 @@ from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSuppl
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .visitor_access import AccessDeskWindow, VisitorAccessAssignment, VisitorAccessRequest, schedule_visitor_access
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
+from .waste_handoffs import (
+    SealedWasteBag,
+    WasteCollectionReceipt,
+    WasteHandoffFinding,
+    WasteHandoffStatus,
+    reconcile_waste_handoffs,
+)
 
 __all__ = [
     "Appointment",
@@ -174,6 +181,7 @@ __all__ = [
     "SupplierOffer",
     "ScheduledBatchAllocation",
     "ScheduledConsumption",
+    "SealedWasteBag",
     "TurnoverTask",
     "TemperatureControlledBatch",
     "TransferRequest",
@@ -182,6 +190,9 @@ __all__ = [
     "VisitorAccessRequest",
     "WaitlistMatch",
     "WaitlistRequest",
+    "WasteCollectionReceipt",
+    "WasteHandoffFinding",
+    "WasteHandoffStatus",
     "match_waitlist",
     "allocate_inventory",
     "allocate_equipment_loans",
@@ -208,4 +219,5 @@ __all__ = [
     "allocate_expiring_supplies",
     "assess_cold_storage",
     "schedule_visitor_access",
+    "reconcile_waste_handoffs",
 ]

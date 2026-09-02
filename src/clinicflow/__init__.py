@@ -161,6 +161,12 @@ from .supply_receiving import (
 )
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .visitor_access import AccessDeskWindow, VisitorAccessAssignment, VisitorAccessRequest, schedule_visitor_access
+from .waiting_room_seats import (
+    WaitingParty,
+    WaitingRoomZone,
+    WaitingSeatAllocation,
+    allocate_waiting_room_seats,
+)
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
 from .waste_handoffs import (
     SealedWasteBag,
@@ -366,4 +372,8 @@ __all__ = [
     "ReceptionContinuityFinding",
     "ReceptionContinuityRequirement",
     "assess_reception_continuity",
+    "WaitingParty",
+    "WaitingRoomZone",
+    "WaitingSeatAllocation",
+    "allocate_waiting_room_seats",
 ]

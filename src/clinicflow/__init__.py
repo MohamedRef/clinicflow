@@ -145,6 +145,7 @@ from .service import ClinicFlow
 from .shuttle_capacity import ShuttleArrival, ShuttleBay, ShuttleBayAssignment, schedule_shuttle_arrivals
 from .staff_badges import StaffAreaAssignment, StaffBadgeFinding, StaffBadgeGrant, assess_staff_badges
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
+from .staff_lockers import StaffLocker, StaffLockerAssignment, StaffLockerRequest, allocate_staff_lockers
 from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
 from .supply_receiving import (
     ScheduledSupplyDelivery,
@@ -351,4 +352,8 @@ __all__ = [
     "ShuttleBay",
     "ShuttleBayAssignment",
     "schedule_shuttle_arrivals",
+    "StaffLocker",
+    "StaffLockerAssignment",
+    "StaffLockerRequest",
+    "allocate_staff_lockers",
 ]

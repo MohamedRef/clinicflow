@@ -123,6 +123,12 @@ from .reception_capacity import (
     ReceptionDeskCapacity,
     assess_reception_capacity,
 )
+from .reception_continuity import (
+    ReceptionContinuityCheck,
+    ReceptionContinuityFinding,
+    ReceptionContinuityRequirement,
+    assess_reception_continuity,
+)
 from .reception_fairness import (
     ReceptionFairnessFinding,
     ReceptionFairnessPolicy,
@@ -356,4 +362,8 @@ __all__ = [
     "StaffLockerAssignment",
     "StaffLockerRequest",
     "allocate_staff_lockers",
+    "ReceptionContinuityCheck",
+    "ReceptionContinuityFinding",
+    "ReceptionContinuityRequirement",
+    "assess_reception_continuity",
 ]

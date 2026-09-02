@@ -7,6 +7,7 @@ from .accessibility_readiness import (
     RoomAccessibilityCheck,
     assess_accessibility_readiness,
 )
+from .air_quality import RoomAirFinding, RoomAirPolicy, RoomAirReading, assess_room_air_quality
 from .appointment_overbooking import (
     OverbookingDecision,
     OverbookingRequest,
@@ -131,6 +132,10 @@ from .waste_handoffs import (
 
 __all__ = [
     "Appointment",
+    "RoomAirFinding",
+    "RoomAirPolicy",
+    "RoomAirReading",
+    "assess_room_air_quality",
     "AccessDeskWindow",
     "AccessibilityAssessment",
     "AccessibilityDisposition",

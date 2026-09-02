@@ -83,6 +83,7 @@ from .models import (
     StaffMember,
 )
 from .opening_readiness import ClinicOpeningAssessment, OpeningCheck, OpeningCheckStatus, assess_clinic_opening
+from .parking_capacity import ClinicParkingCapacity, ParkingAllocation, ParkingArrival, allocate_clinic_parking
 from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
 from .reception_capacity import (
     ReceptionArrival,
@@ -176,6 +177,10 @@ __all__ = [
     "MaintenanceBlock",
     "OpeningCheck",
     "OpeningCheckStatus",
+    "ClinicParkingCapacity",
+    "ParkingAllocation",
+    "ParkingArrival",
+    "allocate_clinic_parking",
     "OutageAppointment",
     "PersistenceError",
     "RecallReplacement",

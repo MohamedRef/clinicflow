@@ -15,6 +15,12 @@ from .appointment_overbooking import (
     plan_appointment_overbooking,
 )
 from .break_coverage import BreakAssignment, BreakRequest, ReliefStaff, schedule_break_coverage
+from .call_button_readiness import (
+    CallButtonCheck,
+    CallButtonFinding,
+    CallButtonPolicy,
+    assess_call_button_readiness,
+)
 from .cleaning_capacity import CleaningAssignment, CleaningTeam, RoomCleaningDemand, allocate_cleaning_capacity
 from .cleaning_supply_readiness import (
     CleaningSupplyAllocation,
@@ -376,4 +382,8 @@ __all__ = [
     "WaitingRoomZone",
     "WaitingSeatAllocation",
     "allocate_waiting_room_seats",
+    "CallButtonCheck",
+    "CallButtonFinding",
+    "CallButtonPolicy",
+    "assess_call_button_readiness",
 ]

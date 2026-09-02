@@ -107,6 +107,12 @@ from .models import (
     Room,
     StaffMember,
 )
+from .no_show_recovery import (
+    NoShowRecoveryMatch,
+    NoShowWaitlistCandidate,
+    ReleasedNoShowSlot,
+    recover_no_show_capacity,
+)
 from .opening_readiness import ClinicOpeningAssessment, OpeningCheck, OpeningCheckStatus, assess_clinic_opening
 from .parking_capacity import ClinicParkingCapacity, ParkingAllocation, ParkingArrival, allocate_clinic_parking
 from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
@@ -331,4 +337,8 @@ __all__ = [
     "DocumentScanBatch",
     "ScannerShift",
     "schedule_document_scanning",
+    "NoShowRecoveryMatch",
+    "NoShowWaitlistCandidate",
+    "ReleasedNoShowSlot",
+    "recover_no_show_capacity",
 ]

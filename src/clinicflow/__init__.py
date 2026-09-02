@@ -80,6 +80,12 @@ from .language_support import (
     allocate_language_support,
 )
 from .linen_levels import LinenReplenishment, RoomLinenPosition, plan_linen_replenishment
+from .mobility_escorts import (
+    MobilityEscortAllocation,
+    MobilityEscortRequest,
+    MobilityEscortShift,
+    allocate_mobility_escorts,
+)
 from .models import (
     Appointment,
     AppointmentStatus,
@@ -300,5 +306,9 @@ __all__ = [
     "CleaningSupplyBatch",
     "CleaningSupplyDemand",
     "CleaningSupplyShortage",
+    "MobilityEscortAllocation",
+    "MobilityEscortRequest",
+    "MobilityEscortShift",
     "allocate_cleaning_supplies",
+    "allocate_mobility_escorts",
 ]

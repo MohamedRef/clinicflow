@@ -44,6 +44,12 @@ from .document_readiness import (
     DocumentReadinessFinding,
     assess_document_readiness,
 )
+from .document_scanning import (
+    DocumentScanAssignment,
+    DocumentScanBatch,
+    ScannerShift,
+    schedule_document_scanning,
+)
 from .emergency_lighting import (
     EmergencyLightingCheck,
     EmergencyLightingFinding,
@@ -321,4 +327,8 @@ __all__ = [
     "MobilityEscortShift",
     "allocate_cleaning_supplies",
     "allocate_mobility_escorts",
+    "DocumentScanAssignment",
+    "DocumentScanBatch",
+    "ScannerShift",
+    "schedule_document_scanning",
 ]

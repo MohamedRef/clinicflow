@@ -115,6 +115,7 @@ from .no_show_recovery import (
 )
 from .opening_readiness import ClinicOpeningAssessment, OpeningCheck, OpeningCheckStatus, assess_clinic_opening
 from .parking_capacity import ClinicParkingCapacity, ParkingAllocation, ParkingArrival, allocate_clinic_parking
+from .privacy_screens import PrivacyScreen, PrivacyScreenAssignment, PrivacyScreenDemand, allocate_privacy_screens
 from .recalls import RecallReplacement, RecallShortage, ScheduledBatchAllocation, replace_recalled_allocations
 from .reception_capacity import (
     ReceptionArrival,
@@ -341,4 +342,8 @@ __all__ = [
     "NoShowWaitlistCandidate",
     "ReleasedNoShowSlot",
     "recover_no_show_capacity",
+    "PrivacyScreen",
+    "PrivacyScreenAssignment",
+    "PrivacyScreenDemand",
+    "allocate_privacy_screens",
 ]

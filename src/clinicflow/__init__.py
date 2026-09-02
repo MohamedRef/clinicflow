@@ -44,6 +44,12 @@ from .document_readiness import (
     DocumentReadinessFinding,
     assess_document_readiness,
 )
+from .emergency_lighting import (
+    EmergencyLightingCheck,
+    EmergencyLightingFinding,
+    EmergencyLightingPolicy,
+    assess_emergency_lighting,
+)
 from .equipment_loans import EquipmentLoanAssignment, EquipmentLoanRequest, LoanEquipment, allocate_equipment_loans
 from .facility_interruptions import (
     FacilityImpactDecision,
@@ -297,7 +303,11 @@ __all__ = [
     "AppointmentDocument",
     "AppointmentDocumentRequirement",
     "DocumentReadinessFinding",
+    "EmergencyLightingCheck",
+    "EmergencyLightingFinding",
+    "EmergencyLightingPolicy",
     "assess_document_readiness",
+    "assess_emergency_lighting",
     "ReceptionFairnessFinding",
     "ReceptionFairnessPolicy",
     "ReceptionQueueVisit",

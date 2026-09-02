@@ -111,6 +111,7 @@ from .room_preparation import PreparationAssessment, PreparationRequest, RoomRea
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
 from .room_utilities import RoomUtilityCheck, RoomUtilityFinding, assess_room_utilities
 from .service import ClinicFlow
+from .staff_badges import StaffAreaAssignment, StaffBadgeFinding, StaffBadgeGrant, assess_staff_badges
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
 from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
 from .supply_receiving import (
@@ -210,6 +211,10 @@ __all__ = [
     "ReleasedSlot",
     "ReliefStaff",
     "StaffMember",
+    "StaffAreaAssignment",
+    "StaffBadgeFinding",
+    "StaffBadgeGrant",
+    "assess_staff_badges",
     "StorageTemperatureReading",
     "PreparationAssessment",
     "PreparationRequest",

@@ -59,6 +59,12 @@ from .inventory_allocation import (
     SupplyShortage,
     allocate_inventory,
 )
+from .inventory_quarantine import (
+    InventoryQuarantineFinding,
+    InventoryReleaseCheck,
+    QuarantinedInventoryLot,
+    assess_inventory_quarantine,
+)
 from .inventory_transfers import (
     RoomStock,
     StockTransfer,
@@ -175,6 +181,10 @@ __all__ = [
     "CourierWindow",
     "DomainError",
     "InventoryItem",
+    "InventoryQuarantineFinding",
+    "InventoryReleaseCheck",
+    "QuarantinedInventoryLot",
+    "assess_inventory_quarantine",
     "InventoryPosition",
     "KeyCustodyEvent",
     "KeyCustodyEventType",

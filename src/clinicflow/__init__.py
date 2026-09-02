@@ -174,6 +174,12 @@ from .waiting_room_seats import (
     allocate_waiting_room_seats,
 )
 from .waitlist import ReleasedSlot, WaitlistMatch, WaitlistRequest, match_waitlist
+from .waste_collection import (
+    ClinicWasteDemand,
+    WasteCollectionAssignment,
+    WasteCourierShift,
+    schedule_waste_collections,
+)
 from .waste_handoffs import (
     SealedWasteBag,
     WasteCollectionReceipt,
@@ -386,4 +392,8 @@ __all__ = [
     "CallButtonFinding",
     "CallButtonPolicy",
     "assess_call_button_readiness",
+    "ClinicWasteDemand",
+    "WasteCollectionAssignment",
+    "WasteCourierShift",
+    "schedule_waste_collections",
 ]

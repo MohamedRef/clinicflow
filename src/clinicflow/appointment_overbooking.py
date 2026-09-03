@@ -1,6 +1,7 @@
 """Controlled appointment overbooking based on historical attendance risk."""
 
 from dataclasses import dataclass
+from math import isfinite
 
 from .models import DomainError, clean_code, parse_time
 
@@ -56,7 +57,7 @@ def plan_appointment_overbooking(
             or slot.maximum_capacity < slot.standard_capacity
         ):
             raise DomainError("overbooking capacities are invalid")
-        if not 0 <= slot.maximum_absence_probability <= 1:
+        if not isfinite(slot.maximum_absence_probability) or not 0 <= slot.maximum_absence_probability <= 1:
             raise DomainError("maximum absence probability must be between zero and one")
         normalized_slots[slot_id] = OverbookingSlot(
             slot_id,
@@ -87,7 +88,7 @@ def plan_appointment_overbooking(
         seen.add(request_id)
         if slot_id not in normalized_slots:
             raise DomainError(f"unknown overbooking slot: {slot_id}")
-        if not 0 <= request.absence_probability <= 1:
+        if not isfinite(request.absence_probability) or not 0 <= request.absence_probability <= 1:
             raise DomainError("absence probability must be between zero and one")
         if (
             isinstance(request.priority, bool)

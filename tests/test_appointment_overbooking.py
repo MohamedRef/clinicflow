@@ -26,3 +26,18 @@ def test_rejects_duplicate_requests_and_impossible_occupancy() -> None:
         plan_appointment_overbooking([slot], [row, row], {})
     with pytest.raises(DomainError, match="exceed maximum"):
         plan_appointment_overbooking([slot], [], {"morning": 4})
+
+
+@pytest.mark.parametrize("probability", [float("nan"), float("inf"), float("-inf")])
+def test_rejects_non_finite_absence_probabilities(probability: float) -> None:
+    slot = OverbookingSlot(
+        "morning", "room-a", "2026-09-01T09:00:00+03:00", "2026-09-01T10:00:00+03:00", 2, 3, probability
+    )
+    with pytest.raises(DomainError, match="maximum absence probability"):
+        plan_appointment_overbooking([slot], [], {})
+
+    valid_slot = OverbookingSlot(
+        "morning", "room-a", "2026-09-01T09:00:00+03:00", "2026-09-01T10:00:00+03:00", 2, 3, 0.7
+    )
+    with pytest.raises(DomainError, match="absence probability"):
+        plan_appointment_overbooking([valid_slot], [request("invalid", probability)], {})

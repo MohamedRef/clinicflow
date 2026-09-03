@@ -157,6 +157,24 @@ def test_lists_are_deterministic_and_results_are_defensive_copies() -> None:
     assert clinic.appointment(earlier.id).staff_ids == ["nora", "omar"]
 
 
+def test_appointments_order_by_instant_across_timezone_offsets() -> None:
+    clinic = prepared()
+    clinic.schedule("later", "p", "check-in", "room-a", ["nora"], "2026-08-24T08:00:00Z", "2026-08-24T09:00:00Z")
+    clinic.schedule(
+        "earlier", "p", "check-in", "room-a", ["nora"], "2026-08-24T09:00:00+03:00", "2026-08-24T10:00:00+03:00"
+    )
+    assert [row.id for row in clinic.appointments()] == ["earlier", "later"]
+    restored = ClinicFlow.from_dict(clinic.to_dict())
+    assert [row.id for row in restored.appointments()] == ["earlier", "later"]
+
+
+def test_simultaneous_appointments_use_identifier_tiebreak_across_offsets() -> None:
+    clinic = prepared()
+    clinic.schedule("z", "p", "check-in", "room-a", ["nora"], "2026-08-24T06:00:00Z", "2026-08-24T07:00:00Z")
+    clinic.schedule("a", "p", "check-in", "room-b", ["omar"], "2026-08-24T09:00:00+03:00", "2026-08-24T10:00:00+03:00")
+    assert [row.id for row in clinic.appointments()] == ["a", "z"]
+
+
 def test_repository_round_trip_is_atomic_and_deterministic(tmp_path: Path) -> None:
     path = tmp_path / "state" / "clinic.json"
     repository = ClinicFlowRepository(path)

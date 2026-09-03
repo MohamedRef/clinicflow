@@ -20,6 +20,7 @@ from .models import (
     clean_codes,
     clean_text,
     overlaps,
+    parse_time,
 )
 
 
@@ -194,7 +195,9 @@ class ClinicFlow:
     def appointments(self, status: AppointmentStatus | None = None) -> list[Appointment]:
         return [
             deepcopy(row)
-            for row in sorted(self._state.appointments.values(), key=lambda item: (item.starts_at, item.id))
+            for row in sorted(
+                self._state.appointments.values(), key=lambda item: (parse_time(item.starts_at, "starts_at"), item.id)
+            )
             if status is None or row.status is status
         ]
 

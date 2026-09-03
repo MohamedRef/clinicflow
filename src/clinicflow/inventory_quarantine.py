@@ -55,6 +55,8 @@ def assess_inventory_quarantine(
             raise DomainError("release checks must be unique and declared by their lot")
         if check.completed_day < current_lot.quarantined_day or check.completed_day > now_day:
             raise DomainError("release check completion is outside the quarantine window")
+        if not isinstance(check.passed, bool):
+            raise DomainError("release check outcome must be a boolean")
         observed[key] = check
 
     findings: list[InventoryQuarantineFinding] = []

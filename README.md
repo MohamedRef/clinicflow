@@ -13,13 +13,21 @@ fails closed when persisted state is malformed or uses an unknown schema.
 ## Verification
 
 ```bash
-python -m pip install -e '.[dev]'
+python -m pip install --no-deps -r requirements-dev.lock
+python -m pip check
+python -m pip install --no-build-isolation --no-deps -e .
 ruff format --check .
 ruff check .
 mypy src
 pytest --cov --cov-report=term-missing
+python -m pip wheel --no-build-isolation --no-deps --wheel-dir dist .
 docker build --tag clinicflow-dependencies .
 ```
+
+The committed lock includes transitive verification dependencies and the build
+backend. Keep its direct pins aligned with `pyproject.toml`; test any regenerated
+resolution in a fresh Python 3.12 environment before committing it. The Docker
+image installs only the locked dependencies and contains no application source.
 
 ## Ownership
 

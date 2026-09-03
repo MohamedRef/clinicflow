@@ -1,0 +1,18 @@
+# Resolved from pyproject.toml's dev extra for Python >=3.12 on all platforms.
+# Includes the exact build-system requirements for offline-isolated packaging.
+colorama==0.4.6 ; sys_platform == 'win32'
+coverage[toml]==7.16.0
+iniconfig==2.3.0
+librt==0.15.0 ; platform_python_implementation != 'PyPy'
+mypy==1.19.1
+mypy-extensions==1.1.0
+packaging==26.3
+pathspec==1.1.1
+pluggy==1.6.0
+pygments==2.21.0
+pytest==9.0.2
+pytest-cov==7.0.0
+ruff==0.15.5
+setuptools==80.9.0
+typing-extensions==4.16.0
+wheel==0.46.2

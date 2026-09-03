@@ -37,6 +37,14 @@ def test_skips_slots_outside_request_window_or_capability() -> None:
     assert matches == []
 
 
+def test_matches_against_canonical_slot_identity_and_capabilities() -> None:
+    matches = match_waitlist(
+        [request("candidate", 4, {"exam"})],
+        [slot(" SLOT_A ", "2026-09-01T09:00:00+00:00", {" EXAM "})],
+    )
+    assert [(item.request_id, item.slot_id) for item in matches] == [("candidate", "slot_a")]
+
+
 @pytest.mark.parametrize(
     "requests,slots,message",
     [

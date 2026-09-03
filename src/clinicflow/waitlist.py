@@ -72,7 +72,19 @@ def match_waitlist(requests: list[WaitlistRequest], slots: list[ReleasedSlot]) -
         ends = parse_time(slot.ends_at, "ends_at")
         if ends <= starts:
             raise DomainError("released slot ends_at must follow starts_at")
-        normalized_slots.append((slot, starts, ends))
+        normalized_slots.append(
+            (
+                ReleasedSlot(
+                    slot_id,
+                    clean_code(slot.room_id, "released slot room id"),
+                    clean_codes(slot.capabilities, "released slot capability"),
+                    slot.starts_at,
+                    slot.ends_at,
+                ),
+                starts,
+                ends,
+            )
+        )
 
     remaining = sorted(
         normalized_requests,

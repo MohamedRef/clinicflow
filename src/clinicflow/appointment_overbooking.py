@@ -71,6 +71,8 @@ def plan_appointment_overbooking(
     occupancy: dict[str, int] = {}
     for slot_id, count in existing_bookings.items():
         normalized_id = clean_code(slot_id, "existing booking slot id")
+        if normalized_id in occupancy:
+            raise DomainError(f"duplicate existing booking slot id: {normalized_id}")
         if normalized_id not in normalized_slots:
             raise DomainError(f"unknown existing booking slot: {normalized_id}")
         if isinstance(count, bool) or not isinstance(count, int) or count < 0:

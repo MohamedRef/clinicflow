@@ -26,6 +26,8 @@ def test_rejects_duplicate_requests_and_impossible_occupancy() -> None:
         plan_appointment_overbooking([slot], [row, row], {})
     with pytest.raises(DomainError, match="exceed maximum"):
         plan_appointment_overbooking([slot], [], {"morning": 4})
+    with pytest.raises(DomainError, match="duplicate existing booking slot"):
+        plan_appointment_overbooking([slot], [], {"morning": 1, " morning ": 1})
 
 
 @pytest.mark.parametrize("probability", [float("nan"), float("inf"), float("-inf")])

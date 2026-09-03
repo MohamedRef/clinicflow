@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -184,6 +185,27 @@ def test_empty_repository_loads_a_new_clinic(tmp_path: Path) -> None:
     clinic = ClinicFlowRepository(tmp_path / "missing.json").load()
     assert clinic.appointments() == []
     assert clinic.inventory_report() == []
+
+
+@pytest.mark.parametrize("collection", ["rooms", "staff", "inventory", "appointments", "maintenance"])
+def test_repository_rejects_duplicate_snapshot_identities(tmp_path: Path, collection: str) -> None:
+    clinic = prepared()
+    schedule(clinic)
+    clinic.block_room("repair", "room-b", END, "2026-08-24T11:00:00+03:00", "Inspection")
+    data = clinic.to_dict()
+    data[collection].append(dict(data[collection][0]))
+    path = tmp_path / "clinic.json"
+    path.write_text(json.dumps(data), encoding="utf-8")
+    with pytest.raises(PersistenceError, match=f"duplicate snapshot {collection}"):
+        ClinicFlowRepository(path).load()
+
+
+@pytest.mark.parametrize("rows", [None, {}, [None], [{"id": None}], [{"id": "Room-A"}]])
+def test_snapshot_rejects_invalid_collection_identities(rows: object) -> None:
+    data = prepared().to_dict()
+    data["rooms"] = rows
+    with pytest.raises(DomainError, match="snapshot rooms"):
+        ClinicFlow.from_dict(data)
 
 
 def test_identifiers_and_duplicate_resources_are_validated() -> None:

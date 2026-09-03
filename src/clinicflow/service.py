@@ -253,6 +253,26 @@ class ClinicFlow:
         if value.get("schema_version") != 1:
             raise DomainError("unsupported clinic snapshot schema")
         try:
+            for collection, key in (
+                ("rooms", "id"),
+                ("staff", "id"),
+                ("inventory", "sku"),
+                ("appointments", "id"),
+                ("maintenance", "id"),
+            ):
+                rows = value[collection]
+                if not isinstance(rows, list):
+                    raise DomainError(f"snapshot {collection} must be a list")
+                identifiers: set[str] = set()
+                for row in rows:
+                    if not isinstance(row, dict) or not isinstance(row.get(key), str):
+                        raise DomainError(f"snapshot {collection} contains an invalid identity")
+                    identifier = clean_code(row[key], f"snapshot {collection} identity")
+                    if identifier in identifiers:
+                        raise DomainError(f"duplicate snapshot {collection} identity: {identifier}")
+                    if identifier != row[key]:
+                        raise DomainError(f"snapshot {collection} identity must be canonical")
+                    identifiers.add(identifier)
             snapshot = ClinicSnapshot(
                 rooms={row["id"]: Room(**{**row, "capabilities": set(row["capabilities"])}) for row in value["rooms"]},
                 staff={

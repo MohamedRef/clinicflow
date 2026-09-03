@@ -6,6 +6,7 @@ import json
 import os
 from contextlib import suppress
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 
 from .models import DomainError
 from .service import ClinicFlow
@@ -32,16 +33,25 @@ class ClinicFlowRepository:
             raise PersistenceError(f"cannot load {self.path}: {error}") from error
 
     def save(self, clinic: ClinicFlow) -> None:
-        temporary = self.path.with_suffix(f"{self.path.suffix}.tmp")
+        temporary: Path | None = None
         try:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             encoded = json.dumps(clinic.to_dict(), indent=2, sort_keys=True) + "\n"
-            with temporary.open("w", encoding="utf-8") as handle:
+            with NamedTemporaryFile(
+                mode="w",
+                encoding="utf-8",
+                prefix=f".{self.path.name}.",
+                suffix=".tmp",
+                dir=self.path.parent,
+                delete=False,
+            ) as handle:
+                temporary = Path(handle.name)
                 handle.write(encoded)
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temporary, self.path)
         except OSError as error:
-            with suppress(OSError):
-                temporary.unlink(missing_ok=True)
+            if temporary is not None:
+                with suppress(OSError):
+                    temporary.unlink(missing_ok=True)
             raise PersistenceError(f"cannot save {self.path}: {error}") from error

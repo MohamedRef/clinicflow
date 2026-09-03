@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -169,6 +170,52 @@ def test_repository_round_trip_is_atomic_and_deterministic(tmp_path: Path) -> No
     repository.save(restored)
     assert path.read_text(encoding="utf-8") == first
     assert not path.with_suffix(".json.tmp").exists()
+
+
+def test_overlapping_repository_saves_keep_staging_files_independent(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = tmp_path / "clinic.json"
+    outer = prepared()
+    schedule(outer)
+    inner = prepared()
+    real_replace = os.replace
+    staged: list[Path] = []
+
+    def interleaved_replace(source: Path, destination: Path) -> None:
+        staged.append(source)
+        if len(staged) == 1:
+            ClinicFlowRepository(path).save(inner)
+        real_replace(source, destination)
+
+    monkeypatch.setattr("clinicflow.repository.os.replace", interleaved_replace)
+    ClinicFlowRepository(path).save(outer)
+    assert len(set(staged)) == 2
+    assert ClinicFlowRepository(path).load().to_dict() == outer.to_dict()
+    assert all(not source.exists() for source in staged)
+
+
+def test_failed_repository_save_preserves_snapshot_and_unrelated_staging(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = tmp_path / "clinic.json"
+    repository = ClinicFlowRepository(path)
+    original = prepared()
+    repository.save(original)
+    previous = path.read_bytes()
+    unrelated = path.with_suffix(".json.tmp")
+    unrelated.write_text("another writer's data", encoding="utf-8")
+
+    def failed_replace(source: Path, destination: Path) -> None:
+        raise OSError("replace unavailable")
+
+    monkeypatch.setattr("clinicflow.repository.os.replace", failed_replace)
+    schedule(original)
+    with pytest.raises(PersistenceError, match="replace unavailable"):
+        repository.save(original)
+    assert path.read_bytes() == previous
+    assert unrelated.read_text(encoding="utf-8") == "another writer's data"
+    assert list(tmp_path.glob(".clinic.json.*.tmp")) == []
 
 
 def test_repository_fails_closed_on_corrupt_or_unknown_snapshots(tmp_path: Path) -> None:

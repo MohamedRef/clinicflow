@@ -111,6 +111,7 @@ from .language_support import (
     allocate_language_support,
 )
 from .linen_levels import LinenReplenishment, RoomLinenPosition, plan_linen_replenishment
+from .lost_property import LostPropertyClaim, LostPropertyDecision, LostPropertyItem, assess_lost_property_release
 from .mobility_escorts import (
     MobilityEscortAllocation,
     MobilityEscortRequest,
@@ -221,6 +222,10 @@ from .wayfinding_signage import (
 )
 
 __all__ = [
+    "LostPropertyClaim",
+    "LostPropertyDecision",
+    "LostPropertyItem",
+    "assess_lost_property_release",
     "WayfindingFinding",
     "WayfindingObservation",
     "WayfindingRequirement",

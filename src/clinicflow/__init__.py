@@ -164,6 +164,7 @@ from .shuttle_capacity import ShuttleArrival, ShuttleBay, ShuttleBayAssignment, 
 from .staff_badges import StaffAreaAssignment, StaffBadgeFinding, StaffBadgeGrant, assess_staff_badges
 from .staff_coverage import CoverageAssignment, CoverageDemand, SubstituteStaff, assign_staff_coverage
 from .staff_lockers import StaffLocker, StaffLockerAssignment, StaffLockerRequest, allocate_staff_lockers
+from .staff_training import StaffDutyRequirement, StaffTrainingFinding, StaffTrainingRecord, assess_staff_training
 from .supply_expiry import ExpiringSupplyBatch, ExpiryAllocation, ScheduledSupplyDemand, allocate_expiring_supplies
 from .supply_receiving import (
     ScheduledSupplyDelivery,
@@ -195,6 +196,10 @@ from .waste_handoffs import (
 )
 
 __all__ = [
+    "StaffDutyRequirement",
+    "StaffTrainingFinding",
+    "StaffTrainingRecord",
+    "assess_staff_training",
     "CalibrationFinding",
     "CalibrationUse",
     "EquipmentCalibration",

@@ -77,6 +77,12 @@ from .facility_interruptions import (
     FacilityService,
     assess_facility_interruptions,
 )
+from .interpreter_equipment import (
+    InterpreterEquipmentAssignment,
+    InterpreterEquipmentDemand,
+    InterpreterEquipmentUnit,
+    allocate_interpreter_equipment,
+)
 from .inventory_allocation import (
     BatchAllocation,
     InventoryBatch,
@@ -416,4 +422,8 @@ __all__ = [
     "WasteCollectionAssignment",
     "WasteCourierShift",
     "schedule_waste_collections",
+    "InterpreterEquipmentAssignment",
+    "InterpreterEquipmentDemand",
+    "InterpreterEquipmentUnit",
+    "allocate_interpreter_equipment",
 ]

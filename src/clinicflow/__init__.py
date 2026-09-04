@@ -62,6 +62,12 @@ from .emergency_lighting import (
     EmergencyLightingPolicy,
     assess_emergency_lighting,
 )
+from .equipment_calibration import (
+    CalibrationFinding,
+    CalibrationUse,
+    EquipmentCalibration,
+    assess_equipment_calibration,
+)
 from .equipment_loans import EquipmentLoanAssignment, EquipmentLoanRequest, LoanEquipment, allocate_equipment_loans
 from .facility_interruptions import (
     FacilityImpactDecision,
@@ -189,6 +195,10 @@ from .waste_handoffs import (
 )
 
 __all__ = [
+    "CalibrationFinding",
+    "CalibrationUse",
+    "EquipmentCalibration",
+    "assess_equipment_calibration",
     "Appointment",
     "RoomAirFinding",
     "RoomAirPolicy",

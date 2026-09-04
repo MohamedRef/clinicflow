@@ -189,6 +189,7 @@ from .reorder_planning import (
 from .repository import ClinicFlowRepository, PersistenceError
 from .room_access_logs import RoomAccessEvent, RoomAccessFinding, RoomAccessRequirement, assess_room_access_logs
 from .room_downtime import DowntimeRepairPlan, RepairCrew, RoomDowntime, plan_room_downtime_repairs
+from .room_key_handoffs import RoomKeyFinding, RoomKeyHandoff, assess_room_key_handoffs
 from .room_preparation import PreparationAssessment, PreparationRequest, RoomReadiness, assess_room_preparation
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
 from .room_utilities import RoomUtilityCheck, RoomUtilityFinding, assess_room_utilities
@@ -241,6 +242,9 @@ from .wayfinding_signage import (
 )
 
 __all__ = [
+    "RoomKeyFinding",
+    "RoomKeyHandoff",
+    "assess_room_key_handoffs",
     "AppointmentReminder",
     "ReminderDelivery",
     "ReminderFinding",

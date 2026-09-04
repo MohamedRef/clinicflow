@@ -44,6 +44,7 @@ from .courier_collections import (
     schedule_courier_collections,
 )
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
+from .delivery_docks import DeliveryDockWindow, DockDeliveryAssignment, SupplyDeliveryRequest, schedule_delivery_docks
 from .document_readiness import (
     AppointmentDocument,
     AppointmentDocumentRequirement,
@@ -196,6 +197,10 @@ from .waste_handoffs import (
 )
 
 __all__ = [
+    "DeliveryDockWindow",
+    "DockDeliveryAssignment",
+    "SupplyDeliveryRequest",
+    "schedule_delivery_docks",
     "StaffDutyRequirement",
     "StaffTrainingFinding",
     "StaffTrainingRecord",

@@ -187,6 +187,7 @@ from .reorder_planning import (
     plan_inventory_reorders,
 )
 from .repository import ClinicFlowRepository, PersistenceError
+from .room_access_logs import RoomAccessEvent, RoomAccessFinding, RoomAccessRequirement, assess_room_access_logs
 from .room_downtime import DowntimeRepairPlan, RepairCrew, RoomDowntime, plan_room_downtime_repairs
 from .room_preparation import PreparationAssessment, PreparationRequest, RoomReadiness, assess_room_preparation
 from .room_relocation import OutageAppointment, RelocationRoom, RoomBooking, RoomRelocation, relocate_room_outages
@@ -248,6 +249,10 @@ __all__ = [
     "InventoryCycleCount",
     "InventoryLedgerPosition",
     "reconcile_cycle_counts",
+    "RoomAccessEvent",
+    "RoomAccessFinding",
+    "RoomAccessRequirement",
+    "assess_room_access_logs",
     "DocumentCourierAssignment",
     "DocumentCourierDemand",
     "DocumentCourierShift",

@@ -187,6 +187,12 @@ from .supply_receiving import (
 )
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .visitor_access import AccessDeskWindow, VisitorAccessAssignment, VisitorAccessRequest, schedule_visitor_access
+from .waiting_room_sanitation import (
+    SanitationTeamWindow,
+    WaitingRoomSanitationAssignment,
+    WaitingRoomSanitationNeed,
+    schedule_waiting_room_sanitation,
+)
 from .waiting_room_seats import (
     WaitingParty,
     WaitingRoomZone,
@@ -436,4 +442,8 @@ __all__ = [
     "ReceptionPrintDemand",
     "ReceptionPrintStock",
     "allocate_reception_print_stock",
+    "SanitationTeamWindow",
+    "WaitingRoomSanitationAssignment",
+    "WaitingRoomSanitationNeed",
+    "schedule_waiting_room_sanitation",
 ]

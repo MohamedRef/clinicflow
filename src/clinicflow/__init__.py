@@ -14,6 +14,12 @@ from .appointment_overbooking import (
     OverbookingSlot,
     plan_appointment_overbooking,
 )
+from .appointment_reminders import (
+    AppointmentReminder,
+    ReminderDelivery,
+    ReminderFinding,
+    reconcile_appointment_reminders,
+)
 from .break_coverage import BreakAssignment, BreakRequest, ReliefStaff, schedule_break_coverage
 from .call_button_readiness import (
     CallButtonCheck,
@@ -228,6 +234,10 @@ from .wayfinding_signage import (
 )
 
 __all__ = [
+    "AppointmentReminder",
+    "ReminderDelivery",
+    "ReminderFinding",
+    "reconcile_appointment_reminders",
     "DocumentCourierAssignment",
     "DocumentCourierDemand",
     "DocumentCourierShift",

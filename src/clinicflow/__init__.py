@@ -14,6 +14,11 @@ from .appointment_overbooking import (
     OverbookingSlot,
     plan_appointment_overbooking,
 )
+from .appointment_packet_completeness import (
+    AppointmentPacket,
+    AppointmentPacketFinding,
+    assess_appointment_packets,
+)
 from .appointment_reminders import (
     AppointmentReminder,
     ReminderDelivery,
@@ -435,6 +440,9 @@ __all__ = [
     "relocate_room_outages",
     "assess_room_preparation",
     "plan_appointment_overbooking",
+    "AppointmentPacket",
+    "AppointmentPacketFinding",
+    "assess_appointment_packets",
     "plan_room_downtime_repairs",
     "allocate_expiring_supplies",
     "assess_cold_storage",

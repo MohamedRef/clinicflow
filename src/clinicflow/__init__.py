@@ -225,6 +225,11 @@ from .supply_receiving import (
 )
 from .turnover import RoomUse, TurnoverTask, plan_room_turnover
 from .visitor_access import AccessDeskWindow, VisitorAccessAssignment, VisitorAccessRequest, schedule_visitor_access
+from .waiting_room_noise import (
+    NoiseReading,
+    WaitingRoomNoiseFinding,
+    assess_waiting_room_noise,
+)
 from .waiting_room_sanitation import (
     SanitationTeamWindow,
     WaitingRoomSanitationAssignment,
@@ -443,6 +448,9 @@ __all__ = [
     "AppointmentPacket",
     "AppointmentPacketFinding",
     "assess_appointment_packets",
+    "NoiseReading",
+    "WaitingRoomNoiseFinding",
+    "assess_waiting_room_noise",
     "plan_room_downtime_repairs",
     "allocate_expiring_supplies",
     "assess_cold_storage",

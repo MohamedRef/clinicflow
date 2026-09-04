@@ -20,6 +20,12 @@ from .appointment_reminders import (
     ReminderFinding,
     reconcile_appointment_reminders,
 )
+from .appointment_transport import (
+    AppointmentTransportPlan,
+    AppointmentTransportRequest,
+    TransportVehicle,
+    plan_appointment_transport,
+)
 from .break_coverage import BreakAssignment, BreakRequest, ReliefStaff, schedule_break_coverage
 from .call_button_readiness import (
     CallButtonCheck,
@@ -245,6 +251,10 @@ __all__ = [
     "RoomKeyFinding",
     "RoomKeyHandoff",
     "assess_room_key_handoffs",
+    "AppointmentTransportPlan",
+    "AppointmentTransportRequest",
+    "TransportVehicle",
+    "plan_appointment_transport",
     "AppointmentReminder",
     "ReminderDelivery",
     "ReminderFinding",

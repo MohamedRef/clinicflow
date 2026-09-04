@@ -154,6 +154,12 @@ from .reception_fairness import (
     ReceptionQueueVisit,
     assess_reception_fairness,
 )
+from .reception_printing import (
+    ReceptionPrintAllocation,
+    ReceptionPrintDemand,
+    ReceptionPrintStock,
+    allocate_reception_print_stock,
+)
 from .reorder_planning import (
     InventoryPosition,
     ReorderRecommendation,
@@ -426,4 +432,8 @@ __all__ = [
     "InterpreterEquipmentDemand",
     "InterpreterEquipmentUnit",
     "allocate_interpreter_equipment",
+    "ReceptionPrintAllocation",
+    "ReceptionPrintDemand",
+    "ReceptionPrintStock",
+    "allocate_reception_print_stock",
 ]

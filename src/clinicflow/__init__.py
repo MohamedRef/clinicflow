@@ -185,6 +185,7 @@ from .reception_printing import (
     ReceptionPrintStock,
     allocate_reception_print_stock,
 )
+from .reception_queue_signage import QueueSign, QueueSignFinding, ReceptionLane, assess_reception_queue_signage
 from .reorder_planning import (
     InventoryPosition,
     ReorderRecommendation,
@@ -255,6 +256,10 @@ __all__ = [
     "AppointmentTransportRequest",
     "TransportVehicle",
     "plan_appointment_transport",
+    "QueueSign",
+    "QueueSignFinding",
+    "ReceptionLane",
+    "assess_reception_queue_signage",
     "AppointmentReminder",
     "ReminderDelivery",
     "ReminderFinding",

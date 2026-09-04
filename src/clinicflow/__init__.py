@@ -102,6 +102,12 @@ from .inventory_allocation import (
     SupplyShortage,
     allocate_inventory,
 )
+from .inventory_cycle_counts import (
+    CycleCountFinding,
+    InventoryCycleCount,
+    InventoryLedgerPosition,
+    reconcile_cycle_counts,
+)
 from .inventory_quarantine import (
     InventoryQuarantineFinding,
     InventoryReleaseCheck,
@@ -238,6 +244,10 @@ __all__ = [
     "ReminderDelivery",
     "ReminderFinding",
     "reconcile_appointment_reminders",
+    "CycleCountFinding",
+    "InventoryCycleCount",
+    "InventoryLedgerPosition",
+    "reconcile_cycle_counts",
     "DocumentCourierAssignment",
     "DocumentCourierDemand",
     "DocumentCourierShift",

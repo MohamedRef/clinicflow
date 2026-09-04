@@ -136,6 +136,11 @@ from .language_support import (
 )
 from .linen_levels import LinenReplenishment, RoomLinenPosition, plan_linen_replenishment
 from .lost_property import LostPropertyClaim, LostPropertyDecision, LostPropertyItem, assess_lost_property_release
+from .mobility_equipment_readiness import (
+    MobilityEquipmentCheck,
+    MobilityEquipmentFinding,
+    assess_mobility_equipment,
+)
 from .mobility_escorts import (
     MobilityEscortAllocation,
     MobilityEscortRequest,
@@ -467,6 +472,9 @@ __all__ = [
     "MobilityEscortShift",
     "allocate_cleaning_supplies",
     "allocate_mobility_escorts",
+    "MobilityEquipmentCheck",
+    "MobilityEquipmentFinding",
+    "assess_mobility_equipment",
     "DocumentScanAssignment",
     "DocumentScanBatch",
     "ScannerShift",

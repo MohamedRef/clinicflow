@@ -213,8 +213,18 @@ from .waste_handoffs import (
     WasteHandoffStatus,
     reconcile_waste_handoffs,
 )
+from .wayfinding_signage import (
+    WayfindingFinding,
+    WayfindingObservation,
+    WayfindingRequirement,
+    assess_wayfinding_signage,
+)
 
 __all__ = [
+    "WayfindingFinding",
+    "WayfindingObservation",
+    "WayfindingRequirement",
+    "assess_wayfinding_signage",
     "DeliveryDockWindow",
     "DockDeliveryAssignment",
     "SupplyDeliveryRequest",

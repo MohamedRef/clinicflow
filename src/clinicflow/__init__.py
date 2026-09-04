@@ -45,6 +45,12 @@ from .courier_collections import (
 )
 from .delay_forecast import AppointmentDelayForecast, AppointmentDelayInput, forecast_appointment_delays
 from .delivery_docks import DeliveryDockWindow, DockDeliveryAssignment, SupplyDeliveryRequest, schedule_delivery_docks
+from .document_couriers import (
+    DocumentCourierAssignment,
+    DocumentCourierDemand,
+    DocumentCourierShift,
+    schedule_document_couriers,
+)
 from .document_readiness import (
     AppointmentDocument,
     AppointmentDocumentRequirement,
@@ -222,6 +228,10 @@ from .wayfinding_signage import (
 )
 
 __all__ = [
+    "DocumentCourierAssignment",
+    "DocumentCourierDemand",
+    "DocumentCourierShift",
+    "schedule_document_couriers",
     "LostPropertyClaim",
     "LostPropertyDecision",
     "LostPropertyItem",

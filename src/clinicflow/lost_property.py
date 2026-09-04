@@ -58,22 +58,22 @@ def assess_lost_property_release(
         )
     decisions: list[LostPropertyDecision] = []
     for key, item in inventory.items():
-        claim = by_item.get(key)
-        if claim is None:
+        matched_claim = by_item.get(key)
+        if matched_claim is None:
             decisions.append(LostPropertyDecision(item.item_id, None, "retain", ("claim_missing",)))
             continue
         blockers: list[str] = []
         if not item.sealed:
             blockers.append("custody_seal_broken")
-        if not claim.identity_verified:
+        if not matched_claim.identity_verified:
             blockers.append("identity_not_verified")
-        if not claim.description_matched:
+        if not matched_claim.description_matched:
             blockers.append("description_not_matched")
-        if item.sensitive and not claim.second_reviewer:
+        if item.sensitive and not matched_claim.second_reviewer:
             blockers.append("second_reviewer_missing")
         decisions.append(
             LostPropertyDecision(
-                item.item_id, claim.claimant_id, "release" if not blockers else "hold", tuple(blockers)
+                item.item_id, matched_claim.claimant_id, "release" if not blockers else "hold", tuple(blockers)
             )
         )
     return sorted(decisions, key=lambda row: (row.decision == "release", -len(row.blockers), row.item_id))

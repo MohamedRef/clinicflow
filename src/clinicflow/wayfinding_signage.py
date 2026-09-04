@@ -64,16 +64,16 @@ def assess_wayfinding_signage(
         observed[key] = observation
     findings: list[WayfindingFinding] = []
     for key, requirement in configured.items():
-        observation = observed.get(key)
-        installed = observation.signs_installed if observation else 0
+        matched_observation = observed.get(key)
+        installed = matched_observation.signs_installed if matched_observation else 0
         blockers: list[str] = []
-        if observation is None:
+        if matched_observation is None:
             blockers.append("inspection_missing")
         if installed < requirement.decision_points:
             blockers.append("decision_point_signs_missing")
-        if requirement.accessible_route and (observation is None or not observation.accessible_symbols):
+        if requirement.accessible_route and (matched_observation is None or not matched_observation.accessible_symbols):
             blockers.append("accessible_symbols_missing")
-        if observation is not None and not observation.destination_matches:
+        if matched_observation is not None and not matched_observation.destination_matches:
             blockers.append("destination_mismatch")
         findings.append(
             WayfindingFinding(

@@ -99,9 +99,9 @@ class InventoryItem:
 
     @classmethod
     def create(cls, sku: str, name: str, on_hand: int, reorder_level: int) -> InventoryItem:
-        if not isinstance(on_hand, int) or on_hand < 0:
+        if isinstance(on_hand, bool) or not isinstance(on_hand, int) or on_hand < 0:
             raise DomainError("on_hand must be a non-negative integer")
-        if not isinstance(reorder_level, int) or reorder_level < 0:
+        if isinstance(reorder_level, bool) or not isinstance(reorder_level, int) or reorder_level < 0:
             raise DomainError("reorder_level must be a non-negative integer")
         return cls(clean_code(sku, "sku"), clean_text(name, "inventory name"), on_hand, 0, reorder_level)
 

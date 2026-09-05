@@ -53,7 +53,7 @@ class ClinicFlow:
 
     def receive_inventory(self, sku: str, quantity: int) -> InventoryItem:
         item = self._inventory(sku)
-        if not isinstance(quantity, int) or quantity <= 0:
+        if isinstance(quantity, bool) or not isinstance(quantity, int) or quantity <= 0:
             raise DomainError("received quantity must be a positive integer")
         item.on_hand += quantity
         return deepcopy(item)
@@ -315,7 +315,7 @@ class ClinicFlow:
         normalized: dict[str, int] = {}
         for raw_sku, quantity in values.items():
             sku = clean_code(raw_sku, "inventory sku")
-            if not isinstance(quantity, int) or quantity <= 0:
+            if isinstance(quantity, bool) or not isinstance(quantity, int) or quantity <= 0:
                 raise DomainError("inventory requirements must be positive integers")
             if sku in normalized:
                 raise DomainError(f"duplicate inventory requirement: {sku}")

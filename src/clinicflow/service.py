@@ -336,7 +336,71 @@ class ClinicFlow:
             )
         except (KeyError, TypeError, ValueError) as error:
             raise DomainError(f"invalid clinic snapshot: {error}") from error
-        return cls(snapshot)
+        clinic = cls(snapshot)
+        clinic._validate_loaded_snapshot()
+        return clinic
+
+    def _validate_loaded_snapshot(self) -> None:
+        expected_reservations = {sku: 0 for sku in self._state.inventory}
+        scheduled = [
+            appointment
+            for appointment in self._state.appointments.values()
+            if appointment.status is AppointmentStatus.SCHEDULED
+        ]
+        for item in self._state.inventory.values():
+            quantities = (item.on_hand, item.reserved, item.reorder_level)
+            if any(isinstance(value, bool) or not isinstance(value, int) or value < 0 for value in quantities):
+                raise DomainError(f"snapshot inventory quantities are invalid: {item.sku}")
+            if item.reserved > item.on_hand:
+                raise DomainError(f"snapshot inventory reservations exceed stock: {item.sku}")
+
+        for appointment in self._state.appointments.values():
+            assert_window(appointment.starts_at, appointment.ends_at)
+            if appointment.version < 1:
+                raise DomainError(f"snapshot appointment version is invalid: {appointment.id}")
+            room = self._state.rooms.get(appointment.room_id)
+            if room is None:
+                raise DomainError(f"snapshot appointment references missing room: {appointment.id}")
+            if any(staff_id not in self._state.staff for staff_id in appointment.staff_ids):
+                raise DomainError(f"snapshot appointment references missing staff: {appointment.id}")
+            if len(set(appointment.staff_ids)) != len(appointment.staff_ids):
+                raise DomainError(f"snapshot appointment has duplicate staff: {appointment.id}")
+            for sku, quantity in appointment.inventory_requirements.items():
+                if sku not in self._state.inventory:
+                    raise DomainError(f"snapshot appointment references missing inventory: {appointment.id}")
+                if isinstance(quantity, bool) or not isinstance(quantity, int) or quantity <= 0:
+                    raise DomainError(f"snapshot appointment inventory quantity is invalid: {appointment.id}")
+                if appointment.status is AppointmentStatus.SCHEDULED:
+                    expected_reservations[sku] += quantity
+
+        for block in self._state.maintenance.values():
+            if block.room_id not in self._state.rooms:
+                raise DomainError(f"snapshot maintenance references missing room: {block.id}")
+            assert_window(block.starts_at, block.ends_at)
+
+        for index, appointment in enumerate(scheduled):
+            if any(
+                appointment.room_id == other.room_id
+                and overlaps(appointment.starts_at, appointment.ends_at, other.starts_at, other.ends_at)
+                for other in scheduled[index + 1 :]
+            ):
+                raise DomainError(f"snapshot contains overlapping room appointments: {appointment.room_id}")
+            if any(
+                set(appointment.staff_ids) & set(other.staff_ids)
+                and overlaps(appointment.starts_at, appointment.ends_at, other.starts_at, other.ends_at)
+                for other in scheduled[index + 1 :]
+            ):
+                raise DomainError(f"snapshot contains overlapping staff appointments: {appointment.id}")
+            if any(
+                appointment.room_id == block.room_id
+                and overlaps(appointment.starts_at, appointment.ends_at, block.starts_at, block.ends_at)
+                for block in self._state.maintenance.values()
+            ):
+                raise DomainError(f"snapshot appointment overlaps maintenance: {appointment.id}")
+
+        for sku, expected in expected_reservations.items():
+            if self._state.inventory[sku].reserved != expected:
+                raise DomainError(f"snapshot inventory reservation total is inconsistent: {sku}")
 
     def _room_busy(self, room_id: str, starts_at: str, ends_at: str, *, excluding: str | None = None) -> bool:
         appointments_busy = any(

@@ -210,9 +210,9 @@ class ClinicFlow:
         if missing_capabilities:
             raise DomainError(f"room lacks capabilities: {', '.join(sorted(missing_capabilities))}")
 
-        replacements = appointment.staff_ids if staff_ids is None else [
-            clean_code(value, "staff id") for value in staff_ids
-        ]
+        replacements = (
+            appointment.staff_ids if staff_ids is None else [clean_code(value, "staff id") for value in staff_ids]
+        )
         if not replacements:
             raise DomainError("at least one staff member is required")
         if len(set(replacements)) != len(replacements):

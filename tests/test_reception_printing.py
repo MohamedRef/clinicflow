@@ -20,4 +20,4 @@ def test_rejects_boolean_stock_quantity() -> None:
     with pytest.raises(DomainError, match="paper stock"):
         allocate_reception_print_stock(
             [], [ReceptionPrintStock("lot", True, 1, date(2026, 9, 30))], as_of=date(2026, 9, 4)
-        )  # type: ignore[arg-type]
+        )

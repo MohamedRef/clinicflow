@@ -304,11 +304,11 @@ class StockSubstitutionBoard:
     def allocate(self, demand_id: str, allocated_at: datetime) -> StockAllocation:
         now = _instant(allocated_at, "allocated at")
         demand = self._demand(demand_id)
+        if any(item.demand_id.casefold() == demand.demand_id.casefold() for item in self._allocations.values()):
+            raise ValueError("stock demand is already allocated")
         decision = self.decision(demand_id, now)
         if not decision.ready or decision.selected_sku is None:
             raise ValueError("stock demand is not ready to allocate")
-        if any(item.demand_id.casefold() == demand.demand_id.casefold() for item in self._allocations.values()):
-            raise ValueError("stock demand is already allocated")
         item = self._item(demand.site_id, decision.selected_sku)
         updated = replace(item, units_reserved=item.units_reserved + demand.units_required)
         self._stock[f"{item.site_id}:{item.sku.casefold()}"] = updated

@@ -189,6 +189,54 @@ class ClinicFlow:
             item.on_hand -= quantity
         return deepcopy(appointment)
 
+    def reschedule(
+        self,
+        appointment_id: str,
+        starts_at: str,
+        ends_at: str,
+        expected_version: int,
+        *,
+        room_id: str | None = None,
+        staff_ids: list[str] | None = None,
+    ) -> Appointment:
+        """Move a scheduled appointment after validating the complete replacement."""
+        appointment = self._appointment(appointment_id)
+        self._assert_mutable(appointment, expected_version)
+        assert_window(starts_at, ends_at)
+        room = self._room(room_id or appointment.room_id)
+        if not room.active:
+            raise DomainError("room is inactive")
+        missing_capabilities = appointment.required_room_capabilities - room.capabilities
+        if missing_capabilities:
+            raise DomainError(f"room lacks capabilities: {', '.join(sorted(missing_capabilities))}")
+
+        replacements = appointment.staff_ids if staff_ids is None else [
+            clean_code(value, "staff id") for value in staff_ids
+        ]
+        if not replacements:
+            raise DomainError("at least one staff member is required")
+        if len(set(replacements)) != len(replacements):
+            raise DomainError("staff ids must be unique")
+        members = [self._staff(value) for value in replacements]
+        if any(not member.active for member in members):
+            raise DomainError("inactive staff cannot be scheduled")
+        covered = set().union(*(member.qualifications for member in members))
+        missing_qualifications = appointment.required_qualifications - covered
+        if missing_qualifications:
+            raise DomainError(f"staff lack qualifications: {', '.join(sorted(missing_qualifications))}")
+        if self._room_busy(room.id, starts_at, ends_at, excluding=appointment.id):
+            raise DomainError("room is unavailable for the requested window")
+        for staff_id in replacements:
+            if self._staff_busy(staff_id, starts_at, ends_at, excluding=appointment.id):
+                raise DomainError(f"staff member is unavailable: {staff_id}")
+
+        appointment.room_id = room.id
+        appointment.staff_ids = replacements
+        appointment.starts_at = starts_at
+        appointment.ends_at = ends_at
+        appointment.version += 1
+        return deepcopy(appointment)
+
     def appointment(self, appointment_id: str) -> Appointment:
         return deepcopy(self._appointment(appointment_id))
 
@@ -290,9 +338,10 @@ class ClinicFlow:
             raise DomainError(f"invalid clinic snapshot: {error}") from error
         return cls(snapshot)
 
-    def _room_busy(self, room_id: str, starts_at: str, ends_at: str) -> bool:
+    def _room_busy(self, room_id: str, starts_at: str, ends_at: str, *, excluding: str | None = None) -> bool:
         appointments_busy = any(
             row.room_id == room_id
+            and row.id != excluding
             and row.status is AppointmentStatus.SCHEDULED
             and overlaps(row.starts_at, row.ends_at, starts_at, ends_at)
             for row in self._state.appointments.values()
@@ -303,9 +352,10 @@ class ClinicFlow:
         )
         return appointments_busy or maintenance_busy
 
-    def _staff_busy(self, staff_id: str, starts_at: str, ends_at: str) -> bool:
+    def _staff_busy(self, staff_id: str, starts_at: str, ends_at: str, *, excluding: str | None = None) -> bool:
         return any(
             staff_id in row.staff_ids
+            and row.id != excluding
             and row.status is AppointmentStatus.SCHEDULED
             and overlaps(row.starts_at, row.ends_at, starts_at, ends_at)
             for row in self._state.appointments.values()
